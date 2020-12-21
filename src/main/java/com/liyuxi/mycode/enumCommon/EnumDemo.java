@@ -21,7 +21,8 @@ public enum EnumDemo {
         this.code = code;
         this.name = name;
     }
-    private static EnumDemo forEach(int index){
+
+    public static EnumDemo forEach(int index){
         EnumDemo[] enumDemos = EnumDemo.values();
         for(EnumDemo enumDemo : enumDemos){
             if(index == enumDemo.getCode()){
@@ -29,6 +30,5 @@ public enum EnumDemo {
             }
         }
         return null;
-
     }
 }
