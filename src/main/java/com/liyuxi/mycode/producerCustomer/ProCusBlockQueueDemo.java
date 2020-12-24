@@ -1,7 +1,5 @@
 package com.liyuxi.mycode.threads.blockqueues;
 
-import com.sun.deploy.util.StringUtils;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -62,7 +60,7 @@ class MyResource{
     }
 }
 
-public class ProConsumersBlockQueueDemo {
+public class ProCusBlockQueueDemo {
     public static void main(String[] args) throws Exception {
         MyResource myResource = new MyResource(new ArrayBlockingQueue<String>(10));
         new Thread(()->{
