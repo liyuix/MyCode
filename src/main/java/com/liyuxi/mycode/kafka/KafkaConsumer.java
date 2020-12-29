@@ -15,26 +15,26 @@ import java.util.Optional;
 public class KafkaConsumer {
 
 
-    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP1)
-    public void topic_test(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic){
+    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP1,containerFactory = "kafkaManualAckListenerContainerFactory")
+    public void topic_test(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional message = Optional.ofNullable(record.value());
-        if(message.isPresent()){
+        if (message.isPresent()) {
             Object msg = message.get();
-            System.out.println("topic_test 消费了：Topic:" + topic + ",Message:" + msg);
+            System.out.println("topic_test 消费了： Topic:" + topic + ",Message:" + msg);
             ack.acknowledge();
         }
-
     }
 
-    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP2)
+    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP2,containerFactory = "kafkaManualAckListenerContainerFactory")
     public void topic_test1(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional message = Optional.ofNullable(record.value());
-        if(message.isPresent()){
+        if (message.isPresent()) {
             Object msg = message.get();
-            System.out.println("topic_test 消费了：Topic:" + topic + ",Message:" + msg);
+            System.out.println("topic_test1 消费了： Topic:" + topic + ",Message:" + msg);
             ack.acknowledge();
         }
     }
+
 }
