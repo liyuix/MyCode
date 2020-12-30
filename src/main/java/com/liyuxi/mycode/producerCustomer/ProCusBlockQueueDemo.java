@@ -1,4 +1,4 @@
-package com.liyuxi.mycode.threads.blockqueues;
+package com.liyuxi.mycode.producerCustomer;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
