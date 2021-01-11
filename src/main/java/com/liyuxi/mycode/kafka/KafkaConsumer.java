@@ -2,6 +2,8 @@ package com.liyuxi.mycode.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 public class KafkaConsumer {
+    Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
 
     @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP1,containerFactory = "kafkaManualAckListenerContainerFactory")
@@ -21,7 +24,7 @@ public class KafkaConsumer {
         Optional message = Optional.ofNullable(record.value());
         if (message.isPresent()) {
             Object msg = message.get();
-            System.out.println("topic_test 消费了： Topic:" + topic + ",Message:" + msg);
+            logger.info("topic_test 消费了： Topic:={},Message:=", topic, msg);
             ack.acknowledge();
         }
     }
@@ -32,7 +35,7 @@ public class KafkaConsumer {
         Optional message = Optional.ofNullable(record.value());
         if (message.isPresent()) {
             Object msg = message.get();
-            System.out.println("topic_test1 消费了： Topic:" + topic + ",Message:" + msg);
+            logger.info("topic_test1 消费了： Topic:={},Message:=", topic, msg);
             ack.acknowledge();
         }
     }
